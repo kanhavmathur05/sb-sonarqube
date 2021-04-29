@@ -1,6 +1,8 @@
 package com.sbdevops;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.stream.Collectors;
@@ -36,9 +38,16 @@ class SbDevopsApplicationTests {
 	}
 	
 	public void saveUserTest() {
-		User user=new User(999,"pranya",33,"Pune");
+		User user=new User(999,"Pranya",33,"Pune");
 		when(repository.save(user)).thenReturn(user);
 		assertEquals(user,service.addUser(user));
+	}
+	
+	@Test
+	public void deleteUserTest() {
+		User user=new User(999,"Pranya",33,"Pune");
+		service.deleteUser(user);
+		verify(repository,times(1)).delete(user);
 	}
 	
 	@Test
