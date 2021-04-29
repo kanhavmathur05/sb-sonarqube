@@ -37,6 +37,7 @@ class SbDevopsApplicationTests {
 		assertEquals(2,service.getUsers().size());
 	}
 	
+	@Test
 	public void saveUserTest() {
 		User user=new User(999,"Pranya",33,"Pune");
 		when(repository.save(user)).thenReturn(user);
